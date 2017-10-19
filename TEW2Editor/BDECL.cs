@@ -431,8 +431,93 @@ namespace TEW2Editor
         }
         private string doorSounds()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            //first encounter with mpresource byte 01 means skip resource => 0 means resource exists
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "casting" + '\n';
+            ret = ret + "{" + '\n';
+
+            //lock_sound
+            int doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0)
+            {
+                ret = ret + '\t' + "lock_sound:" + '\n';
+                ret = ret + '\t' + "type:"+ ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //unlock_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "unlock_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //rattle_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "rattle_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //opening_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "opening_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //kick_open_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "kick_open_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //closing_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "closing_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //closed_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "closed_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //half_pushed_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "half_pushed_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //half_kicked_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "half_kicked_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //bang_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "bang_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            //burst_sound
+            doesResourceExist = streamMirror.ReadByte();
+            if (doesResourceExist == 0) {
+                ret = ret + '\t' + "burst_sound:" + '\n';
+                ret = ret + '\t' + "type:" + ReadString() + '\n';
+                ret = ret + '\t' + "val:" + ReadString() + '\n';
+            }
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string enemyBody()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
