@@ -22,6 +22,8 @@ namespace TEW2Editor
             InitializeComponent();
             fileTreeView.AfterExpand += fileTreeView_LoadPartial;
             fileTreeView.AfterSelect += fileTreeView_ShowPreview;
+            //https://stackoverflow.com/questions/390802/sort-treeview-automatically-upon-adding-nodes intellisense didnt show it :(
+            fileTreeView.Sorted = true;
         }
         #region fileTreeViewEvents
         private void fileTreeView_ShowPreview(object sender, TreeViewEventArgs eventargs)
@@ -87,6 +89,7 @@ namespace TEW2Editor
                 }
             }
             eventargs.Node.Nodes.RemoveByKey("TEMP");
+         
         }
         #endregion
 

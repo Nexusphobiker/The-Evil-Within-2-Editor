@@ -355,8 +355,28 @@ namespace TEW2Editor
         }//implemented
         private string casting()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "casting" + '\n';
+            ret = ret + "{" + '\n';
+            //Skip object declaration
+            streamMirror.ReadByte();
+            int nameInfoListLen = ReadInt();
+            ret = ret + '\t' + "nameInfoList (list[" + nameInfoListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            int i = 0;
+            while(i < nameInfoListLen)
+            {
+                ret = ret + '\t' + '\t' + "nameInfo:" + '\n';
+                ret = ret + '\t' + '\t' + ReadString() + '\n';
+                ret = ret + '\t' + '\t' + "line:" + ReadInt() + '\n';
+                ret = ret + '\n';
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string collectionItem()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
@@ -528,8 +548,50 @@ namespace TEW2Editor
         }
         private string randomMessage()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "idDeclRandomMessage" + '\n';
+            ret = ret + "{" + '\n';
+            
+            streamMirror.ReadByte();
+            int messagesHighListLen = ReadInt();
+            ret = ret + '\t' + "messagesHigh (list[" + messagesHighListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            int i = 0;
+            while (i < messagesHighListLen)
+            {
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+
+            streamMirror.ReadByte();
+            int messagesMiddleListLen = ReadInt();
+            ret = ret + '\t' + "messagesMiddle (list[" + messagesMiddleListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            i = 0;
+            while (i < messagesMiddleListLen)
+            {
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+
+            streamMirror.ReadByte();
+            int messagesLowListLen = ReadInt();
+            ret = ret + '\t' + "messagesMiddle (list[" + messagesLowListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            i = 0;
+            while (i < messagesLowListLen)
+            {
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string recorder()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";

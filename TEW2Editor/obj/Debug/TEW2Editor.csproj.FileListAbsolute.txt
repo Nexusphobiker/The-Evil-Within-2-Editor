@@ -10,3 +10,8 @@ C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\TEW2Editor\TEW2Editor\obj\Debug\TEW2
 C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\bin\Debug\TEW2Editor.exe.config
 C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\obj\Debug\TEW2Editor.exe
 C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\obj\Debug\TEW2Editor.pdb
+C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\bin\Debug\TEW2Editor.exe
+C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\bin\Debug\TEW2Editor.pdb
+C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\obj\Debug\TEW2Editor.csprojResolveAssemblyReference.cache
+C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\obj\Debug\TEW2Editor.MainForm.resources
+C:\Users\Spodes\Desktop\Projekt Ikarus\TEW2\Github\The-Evil-Within-2-Editor\TEW2Editor\obj\Debug\TEW2Editor.csproj.GenerateResource.Cache
