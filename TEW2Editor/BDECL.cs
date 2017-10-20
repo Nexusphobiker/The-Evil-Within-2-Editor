@@ -795,47 +795,171 @@ namespace TEW2Editor
         private string layer()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+        }//counting as implemented because no content.
         private string LoadingAreaLayer()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
         }
         private string loadScreen()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "loadScreen" + '\n';
+            ret = ret + "{" + '\n';
+            streamMirror.ReadByte();
+            int imageDeclsListLen = ReadInt();
+            int i = 0;
+            ret = ret + '\t' + "imageDecls (list[" + imageDeclsListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            while (i < imageDeclsListLen)
+            {
+                //is mpresource
+                if (streamMirror.ReadByte() == 0)
+                {
+                    ret = ret + '\t' + ReadString() + "  " + ReadString() + '\n';
+                }
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+
+            ret = ret + ReadString() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string loadScreenImage()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "loadScreenImage" + '\n';
+            ret = ret + "{" + '\n';
+            streamMirror.ReadByte();
+            int imagesListLen = ReadInt();
+            ret = ret + '\t' + "images list[" + imagesListLen + ']' + '\n';
+            ret = ret + '\t' + '{' + '\n';
+            int i = 0;
+            while(i < imagesListLen)
+            {
+                ret = ret + '\t' + "image["+i+"]" + '\n';
+                ret = ret + '\t' + ReadString() + '\n';
+                ret = ret + '\t' + ReadString() + '\n';
+                ret = ret + '\t' + ReadInt() + '\n';
+                i++;
+            }
+
+            ret = ret + '\t' + '}' + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string mapInfo()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "mapInfo" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + "prettyMapName:" + ReadInt() + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + ReadString() + '\n';
+            ret = ret + "declLoadScreen:" + ReadString() + '\n';
+            ret = ret + "declLoadMessage:" + ReadString() + '\n';
+            if(streamMirror.ReadByte() == 0)
+            {
+                ret = ret + "option:" + ReadString() + " " + ReadString() + '\n';
+            }
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string mapInfoOptGame()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "mapInfoOptGame" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + ReadString() + '\n';
+            ret = ret + ReadString() + '\n';
+            ret = ret + streamMirror.ReadByte() + '\n';
+            ret = ret + streamMirror.ReadByte() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string mapInfoSgp()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "mapInfoSgp" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + ReadString() + '\n';
+            streamMirror.ReadByte();
+            int layersListLen = ReadInt();
+            ret = ret + '\t' + "layers list[" + layersListLen + "]" + '\n';
+            int i = 0;
+            while(i < layersListLen)
+            {
+                ret = ret + '\t' + "layer[" + i + "] " + ReadString() + '\n';
+                i++;
+            }
+            ret = ret + ReadString() + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string mission()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
         }
         private string missionCndAlways()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "missionCndAlways" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + streamMirror.ReadByte() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string missionCndGameFlag()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "missionCndGameFlag" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + "gameFlag:" + ReadInt() + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + ReadInt() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string missionReward()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "missionReward" + '\n';
+            ret = ret + "{" + '\n';
+            streamMirror.ReadByte();
+            int rewardsListLen = ReadInt();
+            ret = ret + '\t' + "rewards list["+rewardsListLen+"]" + '\n';
+            ret = ret + '\t' + '{' + '\n';
+            int i = 0;
+            while(i < rewardsListLen)
+            {
+                if(streamMirror.ReadByte() == 0)
+                {
+                    ret = ret + '\t' + "reward [" + i + "]" + '\n';
+                    ret = ret + '\t' + "inventory:"+ReadString() + " " + ReadString() + '\n';
+                    ret = ret + '\t' + ReadInt() + '\n';
+                    ret = ret + '\t' + ReadInt() + '\n';
+                    ret = ret + '\t' + ReadInt() + '\n';
+                    ret = ret + '\t' + ReadInt() + '\n';
+                    ret = ret + '\t' + ReadInt() + '\n';
+                    ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+                }
+                i++;
+            }
+            ret = ret + '\t' + '}' + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string mphonestream()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
