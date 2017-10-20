@@ -14,10 +14,14 @@ Implementing Replacing/Removing/Adding files
 
 The biggest part at the moment i am working at are the bdecl (binary decl) files which depending on the types got different objects into them which makes it not possible to reverse one and get all. Some have a very simple structure with two objects others have three or 4 objects with 3 sub objects etc. The game contains 66 binary decl types. Down below you will find the list of implemented ones.
 
-Implemented BDECL formats (5/66):
+Implemented BDECL formats (9/66):
 
 - achievement
 - attackTable
 - casting
 - randomMessage
 - doorSounds
+- enemyBody
+- equipment
+- goreSetting
+- health
