@@ -520,8 +520,37 @@ namespace TEW2Editor
         }//implemented
         private string enemyBody()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "enemyBody" + '\n';
+            ret = ret + "{" + '\n';
+            streamMirror.ReadByte();
+            int partListLen = ReadWord();
+            ret = ret + '\t' + "parts (list[" + partListLen + "])" + '\n';
+            ret = ret + '\t' + "{" + '\n';
+            int i = 0;
+            while(i < partListLen)
+            {
+                ret = ret + '\t' + '\t' + "part["+i+"]" + '\n';
+                ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadInt() + '\n' + '\n';
+                i++;
+            }
+            ret = ret + '\t' + "}" + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
 
         private string enemyMixedParts()
         {
@@ -533,16 +562,232 @@ namespace TEW2Editor
         }
         private string equipment()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "equipment" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + '\t' + "axe:" + ReadString() + " " +  ReadString() + '\n';
+            ret = ret + '\t' + "pipe:" + ReadString() + " " + ReadString() + '\n';
+            ret = ret + '\t' + "molotov:" + ReadString() + " " + ReadString() + '\n';
+            ret = ret + '\t' + "lava:" + ReadString() + " " + ReadString() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string goreSetting()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "goreSetting" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string health()
         {
-            return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
-        }
+            string ret = "BINARY DECL PARSER BY NEXUSPHOBIKER" + '\n';
+            ret = ret + "FILENAME:" + filename + " TYPE:" + type + '\n';
+            ret = ret + "health" + '\n';
+            ret = ret + "{" + '\n';
+            ret = ret + '\t' + ReadString() + '\n';
+            int resourceExists = streamMirror.ReadByte();
+
+            if(resourceExists == 0) {
+                ret = ret + '\t' + "handsModelMD6 type:" + ReadString() + " "+ ReadString() + '\n';
+            }
+            resourceExists = streamMirror.ReadByte();
+            if(resourceExists == 0) {
+                ret = ret + '\t' + "thirdPersonMD6 type:" + ReadString() + " " + ReadString() + '\n';
+            }
+            ret = ret + '\t' + ReadString() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+
+            //childItem (probably wrong. no file i found contained this subclass)
+            ret = ret + '\t' + '\t' + "childItem:" + '\n';
+            streamMirror.ReadByte();
+            int childItemListLen = ReadInt();
+            int i = 0;
+            while (i < childItemListLen)
+            {
+                resourceExists = streamMirror.ReadByte();
+                if(resourceExists == 0)
+                {
+                    ret = ret + '\t' + '\t' + ReadString() + '\n';
+                }
+                i++;
+            }
+            //attachmentInfo (same issue as above)
+            ret = ret + '\t' + '\t' + "attachmentInfo:" + '\n';
+            streamMirror.ReadByte();
+            int attachmentInfoListLen = ReadInt();
+            i = 0;
+            while (i < attachmentInfoListLen)
+            {
+                ret = ret + '\t' + '\t' + ReadInt() + '\n';
+                ret = ret + '\t' + '\t' + ReadString() + '\n';
+                i++;
+            }
+            ret = ret + '\t' + ReadString() + '\n';
+
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "entityDef type:" + ReadString() + " " + ReadString() + '\n';
+            }
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "entityDef2 type:" + ReadString() + " " + ReadString() + '\n';
+            }
+
+            //uiInfo
+            ret = ret + '\t' + '\t' + "uiInfo:" + '\n';
+            ret = ret + '\t' + '\t' + ReadString()  + '\n';
+            ret = ret + '\t' + '\t' + ReadString() + '\n';
+            ret = ret + '\t' + '\t' + "nameStrId:" + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + "descStrId:" + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + "nameStrId_plural:" + ReadInt() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            //droppedControllerShake
+            ret = ret + '\t' + '\t' + "droppedControllerShake:" + '\n';
+            ret = ret + '\t' + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + ReadInt() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            //useSound
+            resourceExists = streamMirror.ReadByte();
+            if(resourceExists == 0)
+            {
+                ret = ret + '\t' + "useSound type:" + ReadString() + " " + ReadString() + '\n';
+            }
+            //equipSound
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "equipSound type:" + ReadString() + " " + ReadString() + '\n';
+            }
+            //unequipSound
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "unequipSound type:" + ReadString() + " " + ReadString() + '\n';
+            }
+            //breakSound
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "breakSound type:" + ReadString() + " " + ReadString() + '\n';
+            }
+
+            ret = ret + '\t' + ReadInt() + '\n';
+
+            //guiCustomMaterial
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "guiCustomMaterial type:" + ReadString() + " " + ReadString() + '\n';
+            }
+
+            ret = ret + '\t' + '\t' + "alreadyGot:" + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + "craftFirstConfirmed:" + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + "menuFirstConfirmed:" + ReadInt() + '\n';
+            ret = ret + '\t' + '\t' + "filmConfirmed:" + ReadInt() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            //showPopup
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "showPopup type:" + ReadString() + " " + ReadString() + '\n';
+            }
+
+            //giveItemsOnRecieve
+            streamMirror.ReadByte();
+            int giveItemsOnRecieveListLength = ReadInt();
+            ret = ret + '\t' + '\t' + "giveItemOnRecieve list[" + giveItemsOnRecieveListLength + "]" + '\n';
+            i = 0;
+            while(i < giveItemsOnRecieveListLength)
+            {
+                ret = ret + '\t' + '\t' + "giveItemOnRecieve type:" + ReadString() + " " + ReadString() + '\n';
+                i++;
+            }
+
+            //declFX
+            resourceExists = streamMirror.ReadByte();
+            if (resourceExists == 0)
+            {
+                ret = ret + '\t' + "declFX type:" + ReadString() + " " + ReadString() + '\n';
+            }
+
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+
+            ret = ret + '\t' + streamMirror.ReadByte() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+            ret = ret + '\t' + ReadInt() + '\n';
+
+            ret = ret + "}" + '\n';
+            return ret;
+        }//implemented
         private string inventoryItem()
         {
             return "BINARY DECL PARSER BY NEXUSPHOBIKER FILENAME:" + filename + " TYPE:" + type + " LOGIC FOR THIS TYPE NOT IMPLEMENTED";
